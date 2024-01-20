@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Giriş Yap</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            width: 350px;
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #4b0082; /* Mor rengi */
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+        }
+        input[type="email"],
+        input[type="password"] {
+            width: calc(100% - 10px);
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            transition: border-color 0.3s ease-in-out;
+        }
+        input[type="email"]:focus,
+        input[type="password"]:focus {
+            border-color: #4b0082; /* Mor rengi */
+        }
+        input[type="submit"] {
+            background-color: #4b0082; /* Mor rengi */
+            color: #fff;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out;
+        }
+        input[type="submit"]:hover {
+            background-color: #000080; /* Lacivert rengi */
+        }
+        .register-link {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .register-link a {
+            color: #4b0082;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Giriş Yap</h2>
+        <form action="giris.php" method="post">
+            <div class="form-group">
+                <label for="email">E-posta (hacettepe.edu.tr):</label>
+                <input type="email" id="email" name="email" required pattern="^[a-zA-Z0-9._%+-]+@hacettepe\.edu\.tr$">
+            </div>
+            <div class="form-group">
+                <label for="password">Şifre:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <input type="submit" value="Giriş Yap">
+        </form>
+        <div class="register-link">
+            <p>Üye değil misiniz? <a href="kayit_formu.html">Kayıt Ol</a></p>
+        </div>
+    </div>
+</body>
+</html>
