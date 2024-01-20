@@ -7,7 +7,6 @@ function submitForm() {
         jsonData[key] = value;
     });
 
-    // Make the POST request with JSON data
     fetch('http://localhost:3300/users', {
         method: 'POST',
         headers: {
@@ -18,9 +17,8 @@ function submitForm() {
     })
     .then(response => response.json())
     .then(data => {
-        alert('Kayit başariyla tamamlandi.'); // Uyarı göster
+        alert('Kayit başariyla tamamlandi.');
 
-        // Yönlendirme işlemi, login sayfasının yolunu güncelleyin
         window.location.href = 'login.html';
     })
     .catch(error => {
