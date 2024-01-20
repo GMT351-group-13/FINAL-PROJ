@@ -110,3 +110,15 @@
 .sidebar-toggle.active {
     left: 0;
 }
+
+
+.popup-content {
+    /* Popup içeriği için stiller */
+    color: black; /* Örnek bir stil */
+    /* Diğer stiller */
+}
+
+/* Özel marker stilleri (eğer kullanıyorsanız) */
+.custom-marker {
+    /* Özel marker stilleri */
+}
