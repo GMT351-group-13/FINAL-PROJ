@@ -2,21 +2,15 @@ const client = require('./connection.js');
 const express = require('express');
 const cors = require('cors');
 const app = express();
-const cors = require('cors');
-const bodyParser = require('body-parser');
+const bodyParser = require('body-parser'); // Keep this declaration
 const bcrypt = require('bcrypt');
 const saltRounds = 10; 
 
-
-app.use(cors({
-    origin: '*', // Tüm kökenlere izin ver
-    methods: ['GET', 'POST', 'DELETE', 'UPDATE', 'PUT', 'PATCH']
-}));
-
-
-const bodyParser = require("body-parser");
 app.use(bodyParser.json());
 app.use(cors());
+
+
+
 
 app.listen(3300, () => {
     console.log('http://localhost:3300');

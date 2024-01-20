@@ -1,16 +1,17 @@
 const client = require('./connection.js');
 const express = require('express');
+const cors = require('cors'); // CORS modülünü içe aktar
 const app = express();
 
-
-
+// CORS ayarlarını uygula
+app.use(cors()); // CORS modülünü kullan
 
 // Body parser kullanarak gelen isteklerin JSON olarak işlenmesini sağla
 app.use(express.json()); // express 4.16+ itibariyle bodyParser yerine express.json kullanılıyor
 
 // Sunucu 3300 portunda dinlemeye başlar
-app.listen(3300, () => {
-    console.log('Server is running on http://localhost:3300');
+app.listen(3301, () => {
+    console.log('Server is running on http://localhost:3301');
 });
 
 // Veritabanından tüm kafeleri çek ve gönder

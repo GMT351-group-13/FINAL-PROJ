@@ -66,14 +66,17 @@ var markers = {};
 });
 
 function loadCafes() {
-    fetch('http://localhost:3300/cafes')
+    fetch('http://localhost:3301/cafes')
         .then(response => response.json())
         .then(data => {
             var cafesList = document.getElementById('cafesChecklist');
             data.forEach(cafe => {
                 var lat = parseFloat(cafe.cafe_lat);
                 var lon = parseFloat(cafe.cafe_lon);
+
                 var marker = L.marker([lat, lon]).bindPopup(`<b>${cafe.cafe_name}</b><br>${cafe.cafe_desc || 'Açıklama yok'}`);
+                marker.addTo(map);
+
                 markers[cafe.id] = marker;
                 marker.addTo(map);
 
