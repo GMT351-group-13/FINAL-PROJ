@@ -46,7 +46,7 @@
         input[type="password"]:focus {
             border-color: #4b0082; /* Mor rengi */
         }
-        input[type="submit"] {
+        input[type="button"] {
             background-color: #4b0082; /* Mor rengi */
             color: #fff;
             padding: 12px 20px;
@@ -55,7 +55,7 @@
             cursor: pointer;
             transition: background-color 0.3s ease-in-out;
         }
-        input[type="submit"]:hover {
+        input[type="button"]:hover {
             background-color: #000080; /* Lacivert rengi */
         }
         .register-link {
@@ -70,21 +70,29 @@
 </head>
 <body>
     <div class="container">
-        <h2>Giriş Yap</h2>
-        <form action="giris.php" method="post">
+        <h2>Üye Ol</h2>
+        <form id="registrationForm">
             <div class="form-group">
-                <label for="email">E-posta (hacettepe.edu.tr):</label>
-                <input type="email" id="email" name="email" required pattern="^[a-zA-Z0-9._%+-]+@hacettepe\.edu\.tr$">
+                <label for="firstname">Ad:</label>
+                <input type="text" id="firstname" name="firstname" required>
             </div>
+            <div class="form-group">
+                <label for="lastname">Soyad:</label>
+                <input type="text" id="lastname" name="lastname" required>
+            </div>
+            <div class="form-group">
+                <label for="email">E-posta:</label>
+                <input type="email" id="email" name="email">
+            </div>            
             <div class="form-group">
                 <label for="password">Şifre:</label>
                 <input type="password" id="password" name="password" required>
             </div>
-            <input type="submit" value="Giriş Yap">
+            <input type="button" value="Üye Ol" onclick="submitForm()">
         </form>
-        <div class="register-link">
-            <p>Üye değil misiniz? <a href="kayit_formu.html">Kayıt Ol</a></p>
-        </div>
     </div>
+    
+    <script src="../routers/register.js"></script>
+
 </body>
 </html>
