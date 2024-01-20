@@ -24,12 +24,10 @@
     <!-- Sidebar -->
     <div class="sidebar" id="sidebar">
         <a href="#home">HACETTEPE ÜNİVERSİTESİ</a>
-        <!-- Checkbox olarak değiştirilen İşletmeler butonu -->
-        <label class="checkbox-container">
-            İşletmeler
-            <input type="checkbox" id="toggleCafes" checked>
-            <span class="checkmark"></span>
-        </label>
+        <a href="#services" id="toggleCafesList">İşletmeler</a> <!-- İşletmeler butonu için id eklendi -->
+        <div id="cafesList" class="cafes-list">
+            <ul id="cafesChecklist"></ul>
+        </div>
         <a href="#contact">Yorum</a>
     </div>
 
@@ -41,10 +39,15 @@
     <!-- Leaflet Harita Kodları -->
     <script>
 // Harita ve markerlar için global değişkenler
-var map;
-var markers = [];
 
-document.addEventListener('DOMContentLoaded', function() {
+var map;
+var markers = {};
+    document.getElementById('toggleCafesList').addEventListener('click', function() {
+        var cafesList = document.getElementById('cafesList');
+        cafesList.classList.toggle('show-cafes-list'); // show-cafes-list sınıfını ekleyip çıkarır
+    });
+
+    document.addEventListener('DOMContentLoaded', function() {
     map = L.map('map', {
         center: [39.8687, 32.7322],
         zoom: 15,
@@ -56,35 +59,49 @@ document.addEventListener('DOMContentLoaded', function() {
         attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors'
     }).addTo(map);
 
-    fetchMarkers();
+    // Cafe listesi ve markerları yükle
+    loadCafes();
 });
 
-// Markerları çek ve göster
-function fetchMarkers() {
+function loadCafes() {
     fetch('http://localhost:3300/cafes')
         .then(response => response.json())
         .then(data => {
+            var cafesList = document.getElementById('cafesChecklist');
             data.forEach(cafe => {
                 var lat = parseFloat(cafe.cafe_lat);
                 var lon = parseFloat(cafe.cafe_lon);
                 var marker = L.marker([lat, lon]).bindPopup(`<b>${cafe.cafe_name}</b><br>${cafe.cafe_desc || 'Açıklama yok'}`);
-                markers.push(marker);
+                markers[cafe.id] = marker;
                 marker.addTo(map);
+
+                // Cafe listesi için eleman oluştur
+                var listItem = document.createElement('li');
+                var label = document.createElement('label');
+                var checkbox = document.createElement('input');
+                checkbox.type = 'checkbox';
+                checkbox.checked = true;
+                checkbox.onchange = function() {
+                    toggleMarker(cafe.id);
+                };
+                label.appendChild(checkbox);
+                label.appendChild(document.createTextNode(cafe.cafe_name));
+                listItem.appendChild(label);
+                cafesList.appendChild(listItem);
             });
         })
         .catch(error => console.error('Error fetching the cafes:', error));
 }
 
-// Checkbox kontrol fonksiyonu
-document.getElementById('toggleCafes').addEventListener('change', function(e) {
-    if (e.target.checked) {
-        // Markerları göster
-        markers.forEach(marker => marker.addTo(map));
-    } else {
-        // Markerları gizle
-        markers.forEach(marker => map.removeLayer(marker));
+function toggleMarker(cafeId) {
+    if (markers[cafeId]) {
+        if (map.hasLayer(markers[cafeId])) {
+            map.removeLayer(markers[cafeId]);
+        } else {
+            map.addLayer(markers[cafeId]);
+        }
     }
-});
+}
 
 
     </script>
