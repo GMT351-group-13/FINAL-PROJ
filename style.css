@@ -2,14 +2,14 @@
 .sidebar-toggle {
     position: fixed;
     top: 20px;
-    left: 250px; /* Sidebar genişliği */
-    z-index: 2; /* Sidebar'dan daha yüksek bir z-index */
+    left: 0; /* Başlangıç konumu */
+    z-index: 2;
     cursor: pointer;
     padding: 10px;
     background-color: #3f186cfd;
     color: white;
     border: none;
-    transition: left 0.5s; /* Butonun animasyon süresi */
+    transition: left 0.5s;
 }
 
 /* Sidebar CSS */
@@ -19,11 +19,11 @@
     position: fixed;
     z-index: 1;
     top: 0;
-    left: 0; /* Sidebar'ı gizlemek için -250px */
+    left: -250px; /* Gizli başlangıç konumu */
     background-color: #3f186cfd;
     overflow-x: hidden;
-    padding-top: 60px; /* Toggle butonundan dolayı boşluk */
-    transition: left 0.5s; /* Animasyon süresi */
+    padding-top: 60px;
+    transition: left 0.5s;
 }
 
 .sidebar a {
@@ -43,7 +43,7 @@
 #map {
     height: 100vh;
     width: calc(100% - 250px); /* Sidebar genişliği çıkarıldıktan sonra kalan genişlik */
-    margin-left: 250px; /* Sidebar genişliğini kompanse etmek için sol margine eklenir */
+    margin-left: 0; /* Sidebar genişliğini kompanse etmek için sol margine eklenir */
 }
 
 /* İçeriği sidebar'ın açılmasıyla sağa kaydır */
@@ -53,5 +53,5 @@
 
 /* Sidebar açıldığında butonun konumunu ayarla */
 .sidebar-toggle.active {
-    left: calc(100% - 50px); /* Sayfa genişliğinden buton genişliğini çıkar */
+    left: 0;
 }
