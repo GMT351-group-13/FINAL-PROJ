@@ -10,6 +10,7 @@
     color: white;
     border: none;
     transition: right 0.5s; /* Sağdan açılma animasyonu */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Yazı tipi ayarı */
 }
 
 /* #map stil tanımları */
@@ -23,7 +24,6 @@
 .content.active {
     margin-left: 250px; /* Sidebar genişliği kadar sola kaydır */
 }
-
 
 /* Sidebar CSS */
 .sidebar {
@@ -46,6 +46,7 @@
     color: white;
     display: block;
     transition: background-color 0.3s;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Yazı tipi ayarı */
 }
 
 .sidebar a:hover {
@@ -59,13 +60,34 @@
     margin-bottom: 20px; /* Başlık altındaki boşluk */
 }
 
-/* Diğer Bağlantıların Stili (İşletmeler ve Yorum) */
+/* Hacettepe Üniversitesi, İşletmeler ve Yorum bağlantılarını yukarı taşı */
+.sidebar a:nth-child(1),
 .sidebar a:nth-child(2),
 .sidebar a:nth-child(3) {
+    padding: 15px;
+    text-decoration: none;
+    font-size: 22px;
+    font-weight: bold;
+    color: white;
+    display: block;
+    transition: background-color 0.3s;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Yazı tipi ayarı */
+}
+
+/* Başlık Stili (Hacettepe Üniversitesi) */
+.sidebar a:first-child {
+    font-size: 28px; /* Başlık yazı boyutu */
+    font-weight: bold; /* Kalın yazı */
+    margin-bottom: 20px; /* Başlık altındaki boşluk */
+}
+
+/* Diğer bağlantıların Stili */
+.sidebar a:not(:nth-child(1)):not(:nth-child(2)):not(:nth-child(3)) {
     padding: 12px 15px; /* İç boşluk */
-    font-size: 22px; /* Yazı boyutu */
+    font-size: 20px; /* Yazı boyutu */
     font-weight: normal; /* Normal yazı kalınlığı */
 }
+
 
 /* İçerik stil tanımları */
 .content {
