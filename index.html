@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet-fullscreen@1.4.2/dist/leaflet.fullscreen.css" />
     <script src="https://unpkg.com/leaflet-fullscreen@1.4.2/dist/Leaflet.fullscreen.min.js"></script>
 </head>
+
 <body>
     <!-- Toggle Butonu -->
     <button class="sidebar-toggle">☰</button>
@@ -40,21 +41,28 @@
 
     <!-- Leaflet Harita Kodları -->
     <script>
-        var map = L.map('map').setView([39.8687143187629, 32.73217029651903], 15);
-        
-        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            maxZoom: 19,
-            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-        }).addTo(map);
+    
+    document.addEventListener('DOMContentLoaded', function() {
+    // Harita yükleme kodları burada olacak
+    var map = L.map('map', {
+        zoomControl: false // Zoom kontrolünü başlangıçta devre dışı bırak
+    }).setView([39.8687143187629, 32.73217029651903], 15);
 
-        // Add fullscreen control to the map
-        map.addControl(new L.Control.Fullscreen());
+    // Tile layer
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors'
+    }).addTo(map);
 
-        // Activate fullscreen on page load
-        map.toggleFullscreen();
+    // Diğer harita işlevleri burada olacak
+});
+
     </script>
 
     <!-- Harici JavaScript Dosyası -->
     <script src="script.js"></script>
+
+
+
 </body>
 </html>

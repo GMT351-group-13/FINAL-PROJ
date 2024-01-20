@@ -19,7 +19,7 @@
     position: fixed;
     z-index: 1;
     top: 0;
-    left: -250px; /* Sidebar'ı gizlemek için -250px */
+    left: 0; /* Sidebar'ı gizlemek için -250px */
     background-color: #3f186cfd;
     overflow-x: hidden;
     padding-top: 60px; /* Toggle butonundan dolayı boşluk */
@@ -42,8 +42,8 @@
 /* #map stil tanımları */
 #map {
     height: 100vh;
-    width: 100%; /* Sidebar kapalıyken tam genişlik */
-    transition: width 0.5s; /* Animasyon süresi */
+    width: calc(100% - 250px); /* Sidebar genişliği çıkarıldıktan sonra kalan genişlik */
+    margin-left: 250px; /* Sidebar genişliğini kompanse etmek için sol margine eklenir */
 }
 
 /* İçeriği sidebar'ın açılmasıyla sağa kaydır */
