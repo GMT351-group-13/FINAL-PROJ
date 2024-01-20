@@ -135,30 +135,6 @@ function generateUniqueId() {
     return Math.floor(Math.random() * 9000000000) + 1000000000;
 }
 
-
-app.post('/login', (req, res) => {
-    const { email, password } = req.body;
-
-    const checkUserQuery = `SELECT * FROM users WHERE email='${email}' AND password='${password}'`;
-
-    client.query(checkUserQuery, (err, result) => {
-        if (!err) {
-            if (result.rows.length > 0) {
-                res.send('Login successful');
-            } else {
-                res.status(401).send('Invalid email or password');
-            }
-        } else {
-            console.log(err.message);
-            res.status(500).send('Internal Server Error');
-        }
-    });
-});
-
-function generateUniqueId() {
-    return Math.floor(Math.random() * 9000000000) + 1000000000;
-}
-
 app.post('/cafes', (req, res) => {
     const cafes = req.body;
     let insertQuery = `INSERT INTO cafes(id, cafe_name, cafe_lat, cafe_lon, cafe_desc)
