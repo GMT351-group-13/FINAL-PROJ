@@ -7,7 +7,6 @@ const bodyParser = require('body-parser');
 const bcrypt = require('bcrypt');
 const saltRounds = 10; 
 
-<<<<<<< HEAD
 
 app.use(cors({
     origin: '*', // Tüm kökenlere izin ver
@@ -16,8 +15,6 @@ app.use(cors({
 
 
 const bodyParser = require("body-parser");
-=======
->>>>>>> d33988fadaf56f5cfe91352d58b3394bfa07e73e
 app.use(bodyParser.json());
 app.use(cors());
 
