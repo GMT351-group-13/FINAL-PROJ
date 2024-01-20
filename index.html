@@ -24,7 +24,12 @@
     <!-- Sidebar -->
     <div class="sidebar" id="sidebar">
         <a href="#home">HACETTEPE ÜNİVERSİTESİ</a>
-        <a href="#services">İşletmeler</a>
+        <!-- Checkbox olarak değiştirilen İşletmeler butonu -->
+        <label class="checkbox-container">
+            İşletmeler
+            <input type="checkbox" id="toggleCafes" checked>
+            <span class="checkmark"></span>
+        </label>
         <a href="#contact">Yorum</a>
     </div>
 
@@ -35,11 +40,15 @@
 
     <!-- Leaflet Harita Kodları -->
     <script>
+// Harita ve markerlar için global değişkenler
+var map;
+var markers = [];
+
 document.addEventListener('DOMContentLoaded', function() {
-    var map = L.map('map', {
+    map = L.map('map', {
         center: [39.8687, 32.7322],
         zoom: 15,
-        zoomControl: false // Zoom kontrolünü başlangıçta devre dışı bırak
+        zoomControl: false
     });
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -47,19 +56,36 @@ document.addEventListener('DOMContentLoaded', function() {
         attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors'
     }).addTo(map);
 
-    fetch('http://localhost:3300/cafes')
+    fetchMarkers();
+});
 
+// Markerları çek ve göster
+function fetchMarkers() {
+    fetch('http://localhost:3300/cafes')
         .then(response => response.json())
         .then(data => {
             data.forEach(cafe => {
                 var lat = parseFloat(cafe.cafe_lat);
                 var lon = parseFloat(cafe.cafe_lon);
-                var marker = L.marker([lat, lon]).addTo(map);
-                marker.bindPopup(`<b>${cafe.cafe_name}</b><br>${cafe.cafe_desc || 'Açıklama yok'}`);
+                var marker = L.marker([lat, lon]).bindPopup(`<b>${cafe.cafe_name}</b><br>${cafe.cafe_desc || 'Açıklama yok'}`);
+                markers.push(marker);
+                marker.addTo(map);
             });
         })
         .catch(error => console.error('Error fetching the cafes:', error));
+}
+
+// Checkbox kontrol fonksiyonu
+document.getElementById('toggleCafes').addEventListener('change', function(e) {
+    if (e.target.checked) {
+        // Markerları göster
+        markers.forEach(marker => marker.addTo(map));
+    } else {
+        // Markerları gizle
+        markers.forEach(marker => map.removeLayer(marker));
+    }
 });
+
 
     </script>
 

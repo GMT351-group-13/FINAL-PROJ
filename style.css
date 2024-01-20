@@ -122,3 +122,10 @@
 .custom-marker {
     /* Özel marker stilleri */
 }
+
+
+.checkbox-container {
+    padding: 15px;
+    color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
