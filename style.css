@@ -35,7 +35,6 @@
     left: 0; /* Sol kenara yerleştirin */
     background-color: #3f186cfd;
     overflow-x: hidden;
-    padding-top: 60px;
     transition: left 0.5s;
 }
 
@@ -53,41 +52,39 @@
     background-color: #531e84; /* Hover durumunda arka plan rengi */
 }
 
-/* Başlık Stili (Hacettepe Üniversitesi) */
+/* Sidebar üst kısmı, logo ve başlık için stil */
+.sidebar-top {
+    text-align: center; /* Başlığı ortala */
+    padding-top: 20px; /* Logoyu ve başlığı biraz daha yukarı al */
+}
+
+/* Üniversite logosu ve başlık */
+.university-logo {
+    width: 80%; /* Genişlik ayarı */
+    height: auto; /* Yükseklik otomatik ayarlanacak */
+    margin: 0 auto; /* Logoyu ortala */
+    display: block;
+}
+
 .sidebar a:first-child {
     font-size: 28px; /* Başlık yazı boyutu */
     font-weight: bold; /* Kalın yazı */
     margin-bottom: 20px; /* Başlık altındaki boşluk */
 }
 
-/* Hacettepe Üniversitesi, İşletmeler ve Yorum bağlantılarını yukarı taşı */
-.sidebar a:nth-child(1),
+/* İşletmeler ve Yorum bağlantılarının stili */
 .sidebar a:nth-child(2),
 .sidebar a:nth-child(3) {
-    padding: 15px;
-    text-decoration: none;
     font-size: 22px;
     font-weight: bold;
-    color: white;
-    display: block;
-    transition: background-color 0.3s;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Yazı tipi ayarı */
-}
-
-/* Başlık Stili (Hacettepe Üniversitesi) */
-.sidebar a:first-child {
-    font-size: 28px; /* Başlık yazı boyutu */
-    font-weight: bold; /* Kalın yazı */
-    margin-bottom: 20px; /* Başlık altındaki boşluk */
 }
 
 /* Diğer bağlantıların Stili */
-.sidebar a:not(:nth-child(1)):not(:nth-child(2)):not(:nth-child(3)) {
+.sidebar a:not(:first-child) {
     padding: 12px 15px; /* İç boşluk */
     font-size: 20px; /* Yazı boyutu */
     font-weight: normal; /* Normal yazı kalınlığı */
 }
-
 
 /* İçerik stil tanımları */
 .content {
@@ -101,16 +98,10 @@
     margin-left: 250px; /* Sidebar genişliğini kompanse etmek için sol margine eklenir */
 }
 
-/* İçeriği sidebar'ın açılmasıyla sağa kaydır */
-.content.active {
-    margin-left: 250px; /* Sidebar genişliği kadar sola kaydır */
-}
-
 /* Sidebar açıldığında butonun konumunu ayarla */
 .sidebar-toggle.active {
     left: 0;
 }
-
 
 .popup-content {
     /* Popup içeriği için stiller */
@@ -123,14 +114,13 @@
     /* Özel marker stilleri */
 }
 
-
 .checkbox-container {
     padding: 15px;
     color: white;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  }
+}
 
-  .cafes-list h3 {
+.cafes-list h3 {
     margin: 10px 0;
     color: white;
 }
