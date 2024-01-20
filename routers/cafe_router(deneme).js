@@ -1,12 +1,7 @@
 const client = require('./connection.js');
 const express = require('express');
-const cors = require('cors');
 const app = express();
 
-app.use(cors({
-    origin: '*', // Tüm kökenlere izin ver
-    methods: ['GET', 'POST', 'DELETE', 'UPDATE', 'PUT', 'PATCH']
-}));
 
 
 
