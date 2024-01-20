@@ -1,0 +1,28 @@
+#map {
+    height: 100vh; /* Tam ekran yüksekliği */
+    width: calc(100% - 250px); /* Sidebar genişliği çıkarıldıktan sonra kalan genişlik */
+    margin-left: 250px; /* Sidebar genişliğini kompanse etmek için sol margine eklenir */
+}
+
+/* Sidebar CSS */
+.sidebar {
+    height: 100vh; /* Tam ekran yüksekliği */
+    width: 250px; /* Sidebar genişliği */
+    position: fixed; /* Sabit pozisyon */
+    z-index: 1; /* Diğer içeriklerin üstünde */
+    top: 0; /* Üstten sıfır konum */
+    left: 0; /* Soldan sıfır konum */
+    background-color: #111; /* Arka plan rengi */
+    overflow-x: hidden; /* Yatay kaydırma çubuğunu gizle */
+    padding-top: 20px; /* Üst boşluk */
+}
+
+.sidebar a {
+    padding: 6px 8px 6px 16px; /* İç boşluk */
+    text-decoration: none; /* Metin süslemesini kaldır */
+    font-size: 25px; /* Yazı boyutu */
+    color: white; /* Yazı rengi */
+    display: block; /* Blok seviyesinde görüntüle */
+}
+
+/* ... Diğer CSS stil tanımları ... */

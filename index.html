@@ -2,43 +2,56 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- ... Diğer meta etiketleri ve başlıklar ... -->
     <title>Map User Location</title>
+    
+    <!-- Harici CSS Dosyası -->
+    <link rel="stylesheet" href="style.css">
 
+    <!-- Leaflet CSS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
     integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
     crossorigin=""/>
 
-    <!-- Make sure you put this AFTER Leaflet's CSS -->
+    <!-- Leaflet JS -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
         integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
         crossorigin=""></script>
 
-    <!-- Add Leaflet Fullscreen plugin -->
+    <!-- Leaflet Fullscreen Plugin -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet-fullscreen@1.4.2/dist/leaflet.fullscreen.css" />
     <script src="https://unpkg.com/leaflet-fullscreen@1.4.2/dist/Leaflet.fullscreen.min.js"></script>
-
-    <style>
-        #map { height: 100vh; } /* 100vh ile sayfanın tam yüksekliğini kullanabilirsiniz. */
-    </style>
 </head>
 <body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <a href="#home">Anasayfa</a>
+        <a href="#services">Hizmetler</a>
+        <a href="#contact">İletişim</a>
+        <!-- Diğer bağlantılarınızı buraya ekleyin -->
+    </div>
 
-    <div id="map"></div>
-    
-    <script>
-        var map = L.map('map').setView([39.8687143187629, 32.73217029651903], 16);
+    <!-- İçerik -->
+    <div class="content">
+        <div id="map"></div>
+        
+        <script>
+            var map = L.map('map').setView([39.8687143187629, 32.73217029651903], 15);
 
-        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            maxZoom: 19,
-            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-        }).addTo(map);
+            L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                maxZoom: 19,
+                attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+            }).addTo(map);
 
-        // Add fullscreen control to the map
-        map.addControl(new L.Control.Fullscreen());
+            // Add fullscreen control to the map
+            map.addControl(new L.Control.Fullscreen());
 
-        // Activate fullscreen on page load
-        map.toggleFullscreen();
-    </script>
+            // Activate fullscreen on page load
+            map.toggleFullscreen();
+        </script>
+    </div>
+
+    <!-- Harici JavaScript Dosyası (Eğer kullanıyorsanız) -->
+    <script src="script.js"></script>
 </body>
 </html>
