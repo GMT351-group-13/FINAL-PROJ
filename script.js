@@ -8,6 +8,6 @@ document.addEventListener('DOMContentLoaded', function() {
     sidebarToggle.addEventListener('click', function() {
         sidebar.classList.toggle('active');
         content.classList.toggle('active');
-        this.classList.toggle('active');
+        sidebarToggle.classList.toggle('active');
     });
 });
