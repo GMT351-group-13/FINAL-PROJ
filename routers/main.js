@@ -2,7 +2,12 @@ const client = require('./connection.js');
 const express = require('express');
 const cors = require('cors');
 const app = express();
+const cors = require('cors');
+const bodyParser = require('body-parser');
+const bcrypt = require('bcrypt');
+const saltRounds = 10; 
 
+<<<<<<< HEAD
 
 app.use(cors({
     origin: '*', // Tüm kökenlere izin ver
@@ -11,7 +16,10 @@ app.use(cors({
 
 
 const bodyParser = require("body-parser");
+=======
+>>>>>>> d33988fadaf56f5cfe91352d58b3394bfa07e73e
 app.use(bodyParser.json());
+app.use(cors());
 
 app.listen(3300, () => {
     console.log('http://localhost:3300');
@@ -21,70 +29,126 @@ app.get('/users', (req, res) => {
     client.query(`SELECT * FROM users`, (err, result) => {
         if (!err) {
             res.send(result.rows);
-        }
-    });
-    //client.end(); 
-});
-
-app.post('/users', (req, res) => {
-    const user = req.body;
-    let insertQuery = `INSERT INTO users(id, firstname, lastname, email, password) 
-                       VALUES(${user.id}, '${user.firstname}', '${user.lastname}', '${user.email}', '${user.password}')`;
-
-    client.query(insertQuery, (err, result) => {
-        if (!err) {
-            res.send('Insertion was successful');
         } else {
             console.log(err.message);
+            res.status(500).send('Internal Server Error');
         }
     });
-    //client.end(); 
 });
 
-app.put('/users/:id', (req, res) => {
-    let user = req.body;
-    let updateQuery = `UPDATE users
-                       SET firstname = '${user.firstname}',
-                       lastname = '${user.lastname}',
-                       email = '${user.email}'
-                       WHERE id = ${user.id}`;
+app.post('/users', async (req, res) => {
+    const user = req.body;
+    const userId = generateUniqueId(); 
 
-    client.query(updateQuery, (err, result) => {
+    try {
+        const hashedPassword = await bcrypt.hash(user.password, saltRounds);
+
+        const insertQuery = `
+            INSERT INTO users(id, firstname, lastname, email, password)
+            VALUES($1, $2, $3, $4, $5)
+        `;
+
+        const values = [userId, user.firstname, user.lastname, user.email, hashedPassword];
+
+        client.query(insertQuery, values, (err, result) => {
+            if (!err) {
+                res.status(200).json({ message: 'Insertion was successful' });
+            } else {
+                console.error(err.message);
+                res.status(500).json({ error: 'Internal Server Error' });
+            }
+        });
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+
+
+app.put('/users/:id', (req, res) => {
+    const userId = req.params.id;
+    const user = req.body;
+
+    // Kullanıcıyı güncelle
+    const updateQuery = `
+        UPDATE users
+        SET firstname = $1,
+            lastname = $2,
+            email = $3
+        WHERE id = $4
+    `;
+
+    const values = [user.firstname, user.lastname, user.email, userId];
+
+    client.query(updateQuery, values, (err, result) => {
         if (!err) {
             res.send('Update was successful');
         } else {
-            console.log(err.message);
+            console.error(err.message);
+            res.status(500).send('Internal Server Error');
         }
     });
-    //client.end() 
 });
 
 app.delete('/users/:id', (req, res) => {
-    let deleteQuery = `DELETE FROM users WHERE id=${req.params.id}`;
+    const userId = req.params.id;
 
-    client.query(deleteQuery, (err, result) => {
+
+    const deleteQuery = 'DELETE FROM users WHERE id = $1';
+
+    client.query(deleteQuery, [userId], (err, result) => {
         if (!err) {
             res.send('Deletion was successful');
         } else {
-            console.log(err.message);
+            console.error(err.message);
+            res.status(500).send('Internal Server Error');
         }
     });
-    //client.end()
 });
+
+app.post('/login', async (req, res) => {
+    const { email, password } = req.body;
+
+
+    const checkUserQuery = 'SELECT * FROM users WHERE email = $1';
+
+    try {
+        const result = await client.query(checkUserQuery, [email]);
+
+        if (result.rows.length > 0) {
+            const user = result.rows[0];
+
+            const passwordMatch = await bcrypt.compare(password, user.password);
+
+            if (passwordMatch) {
+                res.send('Login successful');
+            } else {
+                res.status(401).send('Invalid email or password');
+            }
+        } else {
+            res.status(401).send('Invalid email or password');
+        }
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send('Internal Server Error');
+    }
+});
+
+function generateUniqueId() {
+    return Math.floor(Math.random() * 9000000000) + 1000000000;
+}
+
 
 app.post('/login', (req, res) => {
     const { email, password } = req.body;
 
-    
     const checkUserQuery = `SELECT * FROM users WHERE email='${email}' AND password='${password}'`;
 
     client.query(checkUserQuery, (err, result) => {
         if (!err) {
             if (result.rows.length > 0) {
-                
                 res.send('Login successful');
             } else {
-                
                 res.status(401).send('Invalid email or password');
             }
         } else {
@@ -94,14 +158,9 @@ app.post('/login', (req, res) => {
     });
 });
 
-app.get('/cafes', (req, res) => {
-    client.query(`SELECT * FROM cafes`, (err, result) => {
-        if (!err) {
-            res.send(result.rows);
-        }
-    });
-    //client.end(); 
-});
+function generateUniqueId() {
+    return Math.floor(Math.random() * 9000000000) + 1000000000;
+}
 
 app.post('/cafes', (req, res) => {
     const cafes = req.body;
