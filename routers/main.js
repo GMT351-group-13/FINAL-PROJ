@@ -1,11 +1,13 @@
 const client = require('./connection.js');
 const express = require('express');
 const app = express();
-
+const cors = require('cors');
 const bodyParser = require('body-parser');
 const bcrypt = require('bcrypt');
 const saltRounds = 10; 
+
 app.use(bodyParser.json());
+app.use(cors());
 
 app.listen(3300, () => {
     console.log('http://localhost:3300');
@@ -27,7 +29,6 @@ app.post('/users', async (req, res) => {
     const userId = generateUniqueId(); 
 
     try {
-
         const hashedPassword = await bcrypt.hash(user.password, saltRounds);
 
         const insertQuery = `
@@ -39,17 +40,18 @@ app.post('/users', async (req, res) => {
 
         client.query(insertQuery, values, (err, result) => {
             if (!err) {
-                res.send('Insertion was successful');
+                res.status(200).json({ message: 'Insertion was successful' });
             } else {
                 console.error(err.message);
-                res.status(500).send('Internal Server Error');
+                res.status(500).json({ error: 'Internal Server Error' });
             }
         });
     } catch (err) {
         console.error(err.message);
-        res.status(500).send('Internal Server Error');
+        res.status(500).json({ error: 'Internal Server Error' });
     }
 });
+
 
 app.put('/users/:id', (req, res) => {
     const userId = req.params.id;
@@ -124,65 +126,29 @@ function generateUniqueId() {
     return Math.floor(Math.random() * 9000000000) + 1000000000;
 }
 
-app.post('/cafes', (req, res) => {
-    const cafes = req.body;
-    let insertQuery = `INSERT INTO cafes(id, cafe_name, cafe_lat, cafe_lon, cafe_desc)
-                       VALUES(${cafes.id}, '${cafes.cafe_name}', '${cafes.cafe_lat}', '${cafes.cafe_lon}', '${cafes.cafe_dec}')`;
 
-    client.query(insertQuery, (err, result) => {
+app.post('/login', (req, res) => {
+    const { email, password } = req.body;
+
+    const checkUserQuery = `SELECT * FROM users WHERE email='${email}' AND password='${password}'`;
+
+    client.query(checkUserQuery, (err, result) => {
         if (!err) {
-            res.send('Insertion was successful');
+            if (result.rows.length > 0) {
+                res.send('Login successful');
+            } else {
+                res.status(401).send('Invalid email or password');
+            }
         } else {
             console.log(err.message);
+            res.status(500).send('Internal Server Error');
         }
     });
-    //client.end(); 
 });
 
-app.put('/cafes/:id', (req, res) => {
-    let cafes = req.body;
-    let updateQuery = `UPDATE cafes
-                       SET cafe_name = '${cafes.cafe_name}',
-                       cafe_lat = '${cafes.cafe_lat}',
-                       cafe_lon = '${cafes.cafe_lon}'
-                       cafe_desc= '${cafes.cafe_dec}'
-                       
-                       WHERE id = ${cafes.id}`;
-
-    client.query(updateQuery, (err, result) => {
-        if (!err) {
-            res.send('Update was successful');
-        } else {
-            console.log(err.message);
-        }
-    });
-    //client.end() 
-});
-
-app.delete('/cafes/:id', (req, res) => {
-    let deleteQuery = `DELETE FROM cafes WHERE id=${req.params.id}`;
-
-    client.query(deleteQuery, (err, result) => {
-        if (!err) {
-            res.send('Deletion was successful');
-        } else {
-            console.log(err.message);
-        }
-    });
-    //client.end()
-});
-
-client.connect();
-
-
-app.get('/cafes', (req, res) => {
-    client.query(`SELECT * FROM cafes`, (err, result) => {
-        if (!err) {
-            res.send(result.rows);
-        }
-    });
-    //client.end(); 
-});
+function generateUniqueId() {
+    return Math.floor(Math.random() * 9000000000) + 1000000000;
+}
 
 app.post('/cafes', (req, res) => {
     const cafes = req.body;
