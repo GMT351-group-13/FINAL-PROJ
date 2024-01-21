@@ -3,6 +3,7 @@ const express = require('express');
 const app = express();
 const cors = require('cors');
 const bodyParser = require('body-parser');
+const bcrypt = require('bcrypt');
 
 const saltRounds = 10; 
 
@@ -140,6 +141,7 @@ app.post('/login', async (req, res) => {
     }
 });
 
+
 function generateUniqueId() {
     return Math.floor(Math.random() * 9000000000) + 1000000000;
 }
@@ -158,7 +160,7 @@ app.post('/login', async (req, res) => {
             const passwordMatch = await bcrypt.compare(password, user.password);
 
             if (passwordMatch) {
-                // Redirect to index.html on successful login
+                
                 res.status(200).json({ message: 'Login successful', redirect: 'index.html' });
             } else {
                 res.status(401).json({ error: 'Invalid email or password' });
@@ -171,6 +173,34 @@ app.post('/login', async (req, res) => {
         res.status(500).json({ error: 'Internal Server Error' });
     }
 });
+
+app.post('/adminlogin', async (req, res) => {
+    const { email, password } = req.body;
+
+    const checkUserQuery = 'SELECT * FROM users WHERE email = $1';
+
+    try {
+        const result = await client.query(checkUserQuery, [email]);
+
+        if (result.rows.length > 0) {
+            const user = result.rows[0];
+
+            const passwordMatch = await bcrypt.compare(password, user.password);
+
+            if (passwordMatch && user.isadmin === 1) {
+                res.status(200).json({ message: 'Login successful', redirect: 'http://localhost:5173/' });
+            } else {
+                res.status(401).json({ error: 'Invalid email, password, or insufficient permissions' });
+            }
+        } else {
+            res.status(401).json({ error: 'Invalid email or password' });
+        }
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+
 
 app.get('/cafes', (req, res) => {
     client.query(`SELECT * FROM cafes`, (err, result) => {
