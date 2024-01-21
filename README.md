@@ -33,12 +33,13 @@ Follow these steps to run the project locally:
 
 1. **Clone the project from GitHub:**
 
-        git clone https://github.com/yourusername/hacettepe-campus-map.git
+        git clone https://github.com/GMT351-group-13/FINAL-PROJ
 
 2. **Install the necessary dependencies:**
 
-3. **Start the development server:**
+    npm install;  nodemon, cors, pg, expresjs, path, concurrently, fetch, axios, leaflet
 
+3. **Start the development server:**
 
 ## Usage
 
