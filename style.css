@@ -1,28 +1,28 @@
-/* Sidebar açılır-kapanır butonu */
+/* Sidebar toggle button styles */
 .sidebar-toggle {
     position: fixed;
     top: 20px;
-    right: 20px; /* Sağ üst köşeye yerleştirin */
+    right: 20px; /* Position at the top right corner */
     z-index: 2;
     cursor: pointer;
     padding: 10px;
     background-color: #3f186cfd;
     color: white;
     border: none;
-    transition: right 0.5s; /* Sağdan açılma animasyonu */
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Yazı tipi ayarı */
+    transition: right 0.5s; /* Animation for sliding in from the right */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Font settings */
 }
 
-/* #map stil tanımları */
+/* Styles for #map element */
 #map {
     height: 100vh;
-    width: 100%; /* Bütün ekranı kapla */
-    margin-left: 0; /* Sol margine ihtiyaç yok */
+    width: 100%; /* Occupy full screen width */
+    margin-left: 0; /* No left margin needed */
 }
 
-/* İçeriği sidebar'ın açılmasıyla sağa kaydır */
+/* Shift content to the right when sidebar is open */
 .content.active {
-    margin-left: 250px; /* Sidebar genişliği kadar sola kaydır */
+    margin-left: 250px; /* Shift to the left by the sidebar's width */
 }
 
 /* Sidebar CSS */
@@ -32,7 +32,7 @@
     position: fixed;
     z-index: 1;
     top: 0;
-    left: 0; /* Sol kenara yerleştirin */
+    left: 0; /* Position on the left edge */
     background-color: #3f186cfd;
     overflow-x: hidden;
     transition: left 0.5s;
@@ -45,73 +45,73 @@
     color: white;
     display: block;
     transition: background-color 0.3s;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Yazı tipi ayarı */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Font settings */
 }
 
 .sidebar a:hover {
-    background-color: #531e84; /* Hover durumunda arka plan rengi */
+    background-color: #531e84; /* Background color on hover */
 }
 
-/* Sidebar üst kısmı, logo ve başlık için stil */
+/* Styles for the top part of the sidebar, including logo and title */
 .sidebar-top {
-    text-align: center; /* Başlığı ortala */
-    padding-top: 20px; /* Logoyu ve başlığı biraz daha yukarı al */
+    text-align: center; /* Center align the title */
+    padding-top: 20px; /* Add some space above the logo and title */
 }
 
-/* Üniversite logosu ve başlık */
+/* University logo and title styles */
 .university-logo {
-    width: 80%; /* Genişlik ayarı */
-    height: auto; /* Yükseklik otomatik ayarlanacak */
-    margin: 0 auto; /* Logoyu ortala */
+    width: 80%; /* Width setting */
+    height: auto; /* Auto-adjust height */
+    margin: 0 auto; /* Center the logo */
     display: block;
 }
 
 .sidebar a:first-child {
-    font-size: 28px; /* Başlık yazı boyutu */
-    font-weight: bold; /* Kalın yazı */
-    margin-bottom: 20px; /* Başlık altındaki boşluk */
+    font-size: 28px; /* Title font size */
+    font-weight: bold; /* Bold text */
+    margin-bottom: 20px; /* Space below the title */
 }
 
-/* İşletmeler ve Yorum bağlantılarının stili */
+/* Styles for Businesses and Reviews links */
 .sidebar a:nth-child(2),
 .sidebar a:nth-child(3) {
     font-size: 22px;
     font-weight: bold;
 }
 
-/* Diğer bağlantıların Stili */
+/* Styles for other links */
 .sidebar a:not(:first-child) {
-    padding: 12px 15px; /* İç boşluk */
-    font-size: 20px; /* Yazı boyutu */
-    font-weight: normal; /* Normal yazı kalınlığı */
+    padding: 12px 15px; /* Internal padding */
+    font-size: 20px; /* Font size */
+    font-weight: normal; /* Normal font weight */
 }
 
-/* İçerik stil tanımları */
+/* Content styles */
 .content {
-    transition: margin-left 0.5s; /* Animasyon süresi */
+    transition: margin-left 0.5s; /* Duration of the animation */
 }
 
-/* #map stil tanımları */
+/* Styles for #map when sidebar is open */
 #map {
     height: 100vh;
-    width: calc(100% - 250px); /* Sidebar genişliği çıkarıldıktan sonra kalan genişlik */
-    margin-left: 250px; /* Sidebar genişliğini kompanse etmek için sol margine eklenir */
+    width: calc(100% - 250px); /* Width after subtracting sidebar width */
+    margin-left: 250px; /* Compensate for sidebar width on the left */
 }
 
-/* Sidebar açıldığında butonun konumunu ayarla */
+/* Adjust position of the toggle button when sidebar is open */
 .sidebar-toggle.active {
-    left: 0;
+    right: 250px; /* Adjust right position based on sidebar width */
 }
 
 .popup-content {
-    /* Popup içeriği için stiller */
-    color: black; /* Örnek bir stil */
-    /* Diğer stiller */
+    /* Styles for the popup content */
+    color: black; /* Example style */
+    /* Other styles */
 }
 
-/* Özel marker stilleri (eğer kullanıyorsanız) */
+/* Custom marker styles (if used) */
 .custom-marker {
-    /* Özel marker stilleri */
+    /* Custom marker styles */
 }
 
 .checkbox-container {
@@ -145,12 +145,12 @@
     margin-right: 5px;
 }
 
-/* Cafe listesi için stiller */
+/* Styles for the cafe list */
 .cafes-list {
-    display: none; /* Başlangıçta gizli olacak */
+    display: none; /* Initially hidden */
 }
 
-/* İşletmeler butonuna tıklandığında listeyi göstermek/gizlemek için sınıf */
+/* Class to show/hide the cafe list when the Businesses button is clicked */
 .show-cafes-list {
     display: block;
 }
