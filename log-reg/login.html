@@ -102,11 +102,17 @@
         <p>Üye değil misiniz? <a href="register.html">Kayıt Ol</a></p>
     </div>
 
-    <!-- Admin Girişi Butonu -->
-    <button class="admin-button" onclick="adminLogin()">Admin Girişi</button>
+    <button class="admin-button" onclick="openAdminLogin()">Admin Girişi</button>
+
 </div>
 
-<script src="../routers/login.js"></script>
+<script src="./login.js"></script>
+<script>
+    function openAdminLogin() {
+        
+        window.location.href = './admin.html';
+    }
+</script>
 </body>
 
 </html>
