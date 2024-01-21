@@ -1,44 +1,57 @@
 # final-project
 
-Hacettepe University Campus Location Mapping Project
-About The Project
-This project is designed to provide an interactive mapping solution for the Hacettepe University, Beytepe Campus. Utilizing a combination of advanced web technologies, the backend is crafted with Vue.js and features user and admin login capabilities with admin privileges. The location data of campus facilities is fetched from a PgAdmin4 database, initially seeded from a CSV file.
+# Hacettepe University Beytepe Campus Location Mapping Project
 
-Features
-User Authentication: Secure user login to access personalized features.
-Admin Control: Admin login with comprehensive privileges for site management.
-Dynamic Mapping: Integration with the Leaflet library to render an interactive map of the campus.
-Data Integration: Utilizes PgAdmin4 for data retrieval and management.
-Interactive Elements: Custom checkboxes for different campus locations with clickable events to display reviews or additional information.
-Frontend
-The frontend is developed using Leaflet.js, a powerful library for mobile-friendly interactive maps. Campus locations are dynamically matched with their respective coordinates, fetched from the server and displayed in an HTML format. Various checkboxes allow users to filter the campus locations according to their preferences.
+## About The Project
 
-Backend
-Vue.js is employed to create a robust backend. User authentication is handled securely, providing a seamless experience. Administrative features include the ability to manage the map data, user roles, and access permissions.
+This web application is developed to map the locations of cafés and other venues within Hacettepe University's Beytepe Campus, offering an interactive experience to visitors. The backend is crafted using Vue.js, while the frontend leverages the Leaflet library to provide features such as user login, an admin panel, and dynamic mapping capabilities.
 
-Data Management
-Data is managed using PgAdmin4, with an initial import from a CSV file containing the campus location data. This allows for easy updates and management of the campus locations.
+## Technical Features
 
-Installation
-Instructions for setting up a local development environment:
+- **Node.js and Express**: Core technologies used for developing the RESTful API.
+- **Vue.js**: Progressive JavaScript framework used for interaction between the frontend and backend.
+- **Leaflet.js**: Open-source library used for creating interactive maps.
+- **CORS and JSON Parsing**: Ensures proper handling of requests from different origins and JSON data structures.
+- **PgAdmin4**: Tool used for database management and CSV data importing.
+- **bcrypt**: Library used for secure password hashing.
 
-Clone the repository:
-bash
-Copy code
-git clone https://github.com/yourusername/hacettepe-campus-map.git
-Install dependencies:
-Copy code
-npm install
-Start the development server:
-arduino
-Copy code
-npm run serve
-Usage
-Explain how someone can use this project. Include screenshots or code blocks if necessary.
+## Main Files and Modules
 
-Contributing
-Encourage contributions and provide guidelines on how to do so.
+- `Cafe_router.js`: An Express.js-based server managing CRUD operations for cafés.
+- `Main.js`: RESTful API server that manages user and café data.
+- `Index.html`: Interactive map displaying location information for cafés and other venues.
+- `Admin.html`, `Login.html`, `Register.html`: Pages for user and admin login forms.
+- `EditUser.vue`: A Vue.js component for updating user information.
+- `admin-panel_vue`: A Vue.js interface for admin users to perform CRUD operations on the database.
+- `log-reg`: Scripts for user registration, login, and admin login functionalities.
+- `routers`: The main JavaScript file containing HTTP methods and handling frontend interactions.
+- `.gitignore`: Configuration file to facilitate collaborative development and deployment.
 
-License
+## Installation
 
-MIT License -- Copyright (c) 2024 GMT351-group-13
+Follow these steps to run the project locally:
+
+1. **Clone the project from GitHub:**
+
+        git clone https://github.com/yourusername/hacettepe-campus-map.git
+
+2. **Install the necessary dependencies:**
+
+3. **Start the development server:**
+
+
+## Usage
+
+Once the development server is running, navigate to `localhost:3300` in your browser to use the application. After logging in, you can view and interact with the mapped locations of campus venues and access detailed information.
+
+## Contributing
+
+If you wish to contribute, please fork the project and submit your changes via a pull request. Be sure to read the `CONTRIBUTING.md` file before making contributions.
+
+## License
+
+This project is licensed under the MIT License. For more information, please refer to the `LICENSE` file.
+
+
+
+
