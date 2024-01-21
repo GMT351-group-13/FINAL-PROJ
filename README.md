@@ -23,8 +23,7 @@ This web application is developed to map the locations of cafés and other venue
 - `Admin.html`, `Login.html`, `Register.html`: Pages for user and admin login forms.
 - `EditUser.vue`: A Vue.js component for updating user information.
 - `admin-panel_vue`: A Vue.js interface for admin users to perform CRUD operations on the database.
-- `log-reg`: Scripts for user registration, login, and admin login functionalities.
-- `routers`: The main JavaScript file containing HTTP methods and handling frontend interactions.
+- `routers`: The main JavaScript file containing HTTP methods and handling frontend interactions. Scripts for user registration, login, and admin login functionalities.
 - `.gitignore`: Configuration file to facilitate collaborative development and deployment.
 
 ## Installation
@@ -37,10 +36,13 @@ Follow these steps to run the project locally:
 
 2. **Install the necessary dependencies:**
 
-    npm install;  nodemon, cors, pg, expresjs, path, concurrently, fetch, axios, leaflet
+        npm install;  nodemon, cors, pg, expresjs, path, concurrently, fetch, axios, leaflet, start-all, npm-run-all
 
 3. **Start the development server:**
 
+        Open terminal.
+        bash: npm run start-all
+        Routers --> login.html
 ## Usage
 
 Once the development server is running, navigate to `localhost:3300` in your browser to use the application. After logging in, you can view and interact with the mapped locations of campus venues and access detailed information.
