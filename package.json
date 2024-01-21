@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "vite"
+    "dev": "vite",
+    "start-all": "concurrently \"cd routers && node main.js\" \"cd routers && node cafe_router(deneme).js\" \"cd admin-panel_vue && npm run dev\""
   },
   "author": "",
   "license": "ISC",

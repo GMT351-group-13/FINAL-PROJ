@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Giriş Yap</title>
+    <title>Üye Ol</title>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -24,7 +24,7 @@
         h2 {
             text-align: center;
             margin-bottom: 30px;
-            color: #4b0082; /* Mor rengi */
+            color: #4b0082; 
         }
         .form-group {
             margin-bottom: 20px;
@@ -34,6 +34,7 @@
             margin-bottom: 8px;
             color: #333;
         }
+        input[type="text"],
         input[type="email"],
         input[type="password"] {
             width: calc(100% - 10px);
@@ -42,12 +43,13 @@
             border: 1px solid #ccc;
             transition: border-color 0.3s ease-in-out;
         }
+        input[type="text"]:focus,
         input[type="email"]:focus,
         input[type="password"]:focus {
-            border-color: #4b0082; /* Mor rengi */
+            border-color: #4b0082; 
         }
         input[type="button"] {
-            background-color: #4b0082; /* Mor rengi */
+            background-color: #4b0082; 
             color: #fff;
             padding: 12px 20px;
             border: none;
@@ -56,15 +58,7 @@
             transition: background-color 0.3s ease-in-out;
         }
         input[type="button"]:hover {
-            background-color: #000080; /* Lacivert rengi */
-        }
-        .register-link {
-            text-align: center;
-            margin-top: 20px;
-        }
-        .register-link a {
-            color: #4b0082;
-            text-decoration: none;
+            background-color: #000080;
         }
     </style>
 </head>
@@ -81,7 +75,7 @@
                 <input type="text" id="lastname" name="lastname" required>
             </div>
             <div class="form-group">
-                <label for="email">E-posta:</label>
+                <label for="email">E-posta</label>
                 <input type="email" id="email" name="email">
             </div>            
             <div class="form-group">
@@ -92,7 +86,9 @@
         </form>
     </div>
     
-    <script src="../routers/register.js"></script>
+    <script src="register.js"></script>
 
 </body>
+
+
 </html>
